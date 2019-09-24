@@ -1,0 +1,20 @@
+.event-preview {
+  &__category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 8px;
+    background: #ffffff;
+    border-radius: 3px;
+    line-height: 10px;
+    z-index: 5;
+
+    &-name {
+      font-family: 'Segoe UI';
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 700;
+      color: #111;
+    }
+  }
+}
