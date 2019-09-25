@@ -10,6 +10,20 @@ body {
   background: #ededee;
 }
 
+button,
+input {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
 .app-content {
   padding-top: 70px;
 }

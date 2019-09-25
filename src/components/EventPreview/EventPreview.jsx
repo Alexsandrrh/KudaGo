@@ -10,14 +10,14 @@ class EventPreview extends Component {
   }
 
   render() {
-    const { images, children, style } = this.props;
+    const { image, children, style } = this.props;
 
-    if (images) {
+    if (image) {
       const styleImage = {
         position: 'relative',
         width: '100%',
         height: '100%',
-        backgroundImage: `url("${images[0].image}")`,
+        backgroundImage: `url("${image}")`,
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -43,7 +43,7 @@ EventPreview.defaultProps = {
 EventPreview.propTypes = {
   style: PropTypes.object,
   children: PropTypes.node,
-  images: PropTypes.array.isRequired
+  image: PropTypes.string
 };
 
 export default EventPreview;

@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
 import { events } from './reducers/events';
-import { event } from './reducers/event';
-import { user } from './reducers/user';
+import { favorite } from './reducers/favorite';
 
 export default combineReducers({
   events,
-  event,
-  user
+  favorite
 });

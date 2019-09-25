@@ -1,18 +1,64 @@
 .event-preview {
+  &__age,
+  &__btn-favorite,
   &__category {
     position: absolute;
+    z-index: 10;
+  }
+
+  &__age {
+    top: 20px;
+    right: 15px;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  &__btn-favorite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    bottom: 20px;
+    left: 15px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &.-added {
+      .event-preview__icon {
+        fill: #ffffff;
+      }
+    }
+
+    .event-preview__text {
+      font-family: 'Segoe UI';
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .event-preview__icon {
+      stroke: #ffffff;
+      fill: transparent;
+      margin-right: 8px;
+    }
+  }
+
+  &__category {
     top: 15px;
     left: 15px;
     padding: 8px;
     background: #ffffff;
     border-radius: 3px;
-    line-height: 10px;
-    z-index: 5;
+    line-height: 12px;
 
     &-name {
       font-family: 'Segoe UI';
-      font-size: 10px;
-      line-height: 10px;
+      font-size: 12px;
+      line-height: 12px;
       font-weight: 700;
       color: #111;
     }

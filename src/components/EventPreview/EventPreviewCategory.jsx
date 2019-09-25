@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import getCategory from '../../utils/getCategory';
 
-const EventPreviewCategory = ({ categories }) => {
-  if (categories) {
+const EventPreviewCategory = ({ category }) => {
+  if (category) {
     return (
       <div className="event-preview__category">
         <span className="event-preview__category-name">
-          {getCategory(categories[0])}
+          {getCategory(category)}
         </span>
       </div>
     );
@@ -17,7 +17,7 @@ const EventPreviewCategory = ({ categories }) => {
 };
 
 EventPreviewCategory.propTypes = {
-  categories: PropTypes.array.isRequired
+  category: PropTypes.string
 };
 
 export default EventPreviewCategory;

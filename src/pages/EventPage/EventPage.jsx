@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout/Layout';
-import { getEvent, clearReducerEvent } from '../../actions/event';
-import Skeleton from 'react-loading-skeleton';
 import './EventPage.scss';
-import upperCaseTitle from '../../utils/upperCaseTitle';
 import EventPreview from '../../components/EventPreview/EventPreview';
 import EventPreviewCategory from '../../components/EventPreview/EventPreviewCategory';
+import { getEvents } from '../../actions/events';
+import EventPreviewAge from '../../components/EventPreview/EventPreviewAge';
+import EventPreviewBtnFavorite from '../../components/EventPreview/EventPreviewBtnFavorite';
 
 class EventPage extends Component {
   constructor(props) {
@@ -17,7 +17,8 @@ class EventPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getEvent(this.props.match.params.id);
+    this.props.getEvents();
+    window.scrollTo(0, 0);
   }
 
   getCorrectBody(string) {
@@ -31,45 +32,37 @@ class EventPage extends Component {
 
   render() {
     const {
-      body_text,
+      bodyText,
       title,
       description,
-      images,
-      categories
+      image,
+      id,
+      category,
+      ageRestriction
     } = this.props.event;
 
     return (
-      <Layout>
+      <Layout sidebar={<div></div>}>
         <div className="event-page">
           <div className="event-page__container">
-            <EventPreview images={images}>
-              <EventPreviewCategory categories={categories} />
+            <EventPreview image={image}>
+              <EventPreviewAge age={ageRestriction} />
+              <EventPreviewCategory category={category} />
+              <EventPreviewBtnFavorite eventID={id} object={this.props.event} />
             </EventPreview>
             <div className="event-page__head">
-              <h2 className="event-page__title">
-                {upperCaseTitle(title) || <Skeleton />}
-              </h2>
-              {description ? (
-                <div
-                  className="event-page__description"
-                  dangerouslySetInnerHTML={{ __html: description }}
-                />
-              ) : (
-                <Skeleton count={3} />
-              )}
-            </div>
-
-            {body_text ? (
+              <h2 className="event-page__title">{title}</h2>
               <div
-                ref={e => (this.body = e)}
-                className="event-page__content"
-                dangerouslySetInnerHTML={{
-                  __html: this.getCorrectBody(body_text)
-                }}
+                className="event-page__description"
+                dangerouslySetInnerHTML={{ __html: description }}
               />
-            ) : (
-              <Skeleton count={15} />
-            )}
+            </div>
+            <div
+              className="event-page__content"
+              dangerouslySetInnerHTML={{
+                __html: this.getCorrectBody(bodyText)
+              }}
+            />
           </div>
         </div>
       </Layout>
@@ -79,20 +72,20 @@ class EventPage extends Component {
 
 EventPage.propTypes = {
   event: PropTypes.object.isRequired,
-  clearReducerEvent: PropTypes.func.isRequired,
-  getEvent: PropTypes.func.isRequired
+  getEvents: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return {
-    event: state.event
+    event:
+      state.events.find(event => event.id === Number(props.match.params.id)) ||
+      {}
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getEvent: id => dispatch(getEvent(id)),
-    clearReducerEvent: () => dispatch(clearReducerEvent())
+    getEvents: () => dispatch(getEvents())
   };
 };
 

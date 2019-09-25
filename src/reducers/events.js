@@ -1,11 +1,9 @@
-import { GET_EVENTS_SUCCESS, GET_EVENTS_FAILED } from '../constants';
+import { SET_EVENTS_DATA } from '../actions/events';
 
-export function events(state = [{}, {}, {}, {}], { type, payload }) {
+export function events(state = [], { type, payload }) {
   switch (type) {
-    case GET_EVENTS_SUCCESS:
+    case SET_EVENTS_DATA:
       return payload;
-    case GET_EVENTS_FAILED:
-      return false;
     default:
       return state;
   }

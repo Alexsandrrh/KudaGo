@@ -25,8 +25,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-### Example user template template
-### Example user template
+### Example favorite template template
+### Example favorite template
 
 # IntelliJ project files
 .idea
@@ -39,7 +39,7 @@ gen
 *.tmPreferences.cache
 *.stTheme.cache
 
-# Workspace files are user-specific
+# Workspace files are favorite-specific
 *.sublime-workspace
 
 # Project files should be checked into the repository, unless a significant

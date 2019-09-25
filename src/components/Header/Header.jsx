@@ -21,9 +21,6 @@ class Header extends Component {
             <NavLink className="header-container__nav" to="/favorite">
               <span className="header-container__nav-text">Избранное</span>
             </NavLink>
-            <NavLink className="header-container__nav" to="/profile">
-              <span className="header-container__nav-text">Профиль</span>
-            </NavLink>
           </div>
         </div>
       </header>

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Event.scss';
-import upperCaseTitle from '../../utils/upperCaseTitle';
 import EventPreview from '../EventPreview/EventPreview';
 import EventPreviewCategory from '../EventPreview/EventPreviewCategory';
-import Skeleton from "react-loading-skeleton";
+import EventPreviewAge from '../EventPreview/EventPreviewAge';
+import EventPreviewBtnFavorite from '../EventPreview/EventPreviewBtnFavorite';
 
 class Event extends Component {
   constructor(props) {
@@ -17,34 +17,39 @@ class Event extends Component {
 
   render() {
     const {
-      images,
+      image,
       id,
       title,
       description,
-      categories,
-      publication_date
+      ageRestriction,
+      category
     } = this.props.data;
     const link = `/event/${id}`;
+
+    console.log();
 
     return (
       <div className="event">
         <div className="event-head">
-          <Link to={link} className="event-head__link">
-            <EventPreview images={images}>
-              <EventPreviewCategory categories={categories} />
-            </EventPreview>
-          </Link>
+          <p className="event-head__publish-time">
+            {moment()
+              .locale('ru')
+              .fromNow()}
+          </p>
         </div>
         <div className="event-content">
-          <Link className="event-content__link" to={link}>
-            <span className="event-content__title">
-              {upperCaseTitle(title) || <Skeleton/>}
-            </span>
+          <Link to={link} className="event-content__link">
+            <h3 className="event-content__title">{title}</h3>
+            <EventPreview image={image}>
+              <EventPreviewCategory category={category} />
+              <EventPreviewAge age={ageRestriction} />
+              <EventPreviewBtnFavorite eventID={id}/>
+            </EventPreview>
+            <div
+              className="event-content__description"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           </Link>
-          <div
-            className="event-content__description"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
         </div>
       </div>
     );
