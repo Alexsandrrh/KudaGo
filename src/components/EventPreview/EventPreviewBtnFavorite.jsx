@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Icon from '../Icon/Icon';
+import Icon from '../Common/Icon/Icon';
 import Heart from '../../assets/icons/heart.svg';
 import { handleEventToFavorite } from '../../actions/favorite';
 
@@ -18,6 +18,7 @@ const EventPreviewBtnFavorite = ({
       type="submit"
       className={'event-preview__btn-favorite' + customClass}
       onClick={event => {
+        event.preventDefault();
         handleEventToFavorite(object);
         return false;
       }}

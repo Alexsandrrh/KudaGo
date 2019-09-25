@@ -8,7 +8,7 @@ export const handleEventToFavorite = object => dispatch => {
 
   if (event) {
     data = data.filter(item => item.id !== object.id);
-    localStorage.setItem('favorite', JSON.stringify([]));
+    localStorage.setItem('favorite', JSON.stringify(data));
     dispatch({
       type: DELETE_EVENT_FROM_FAVORITE,
       payload: object.id

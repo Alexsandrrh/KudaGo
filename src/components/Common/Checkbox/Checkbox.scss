@@ -1,0 +1,23 @@
+$color: #ff5858;
+
+.checkbox-label {
+  &__input {
+    display: none;
+  }
+
+  .checkbox-label__input:checked + .checkbox-label__text {
+    color: #ffffff;
+    background: $color;
+  }
+
+  &__text {
+    display: block;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 17px;
+    border: 2px solid $color;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+}

@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import PropTypes from 'prop-types';
 import { getEvents } from '../../actions/events';
 import { connect } from 'react-redux';
+import Filter from '../../components/Filter/Filter';
 
 class MainPage extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <Layout sidebar={<div></div>}>
+      <Layout sidebar={<Filter />}>
         <EventsList events={this.props.events} />
       </Layout>
     );

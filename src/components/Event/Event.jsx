@@ -43,7 +43,7 @@ class Event extends Component {
             <EventPreview image={image}>
               <EventPreviewCategory category={category} />
               <EventPreviewAge age={ageRestriction} />
-              <EventPreviewBtnFavorite eventID={id}/>
+              <EventPreviewBtnFavorite object={this.props.data} eventID={id} />
             </EventPreview>
             <div
               className="event-content__description"

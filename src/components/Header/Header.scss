@@ -8,13 +8,13 @@
     background: #ffffff;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
     &-container {
-      overflow: auto;
       height: 60px;
       &::-webkit-scrollbar {
         width: 0;
       }
       .header-container__menu {
         display: flex;
+        overflow: auto;
         justify-content: flex-start;
         flex-direction: row;
         align-items: center;

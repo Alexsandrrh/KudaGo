@@ -1,5 +1,7 @@
 @media screen and (min-width: 320px) {
  .layout {
+   display: flex;
+   flex-direction: column-reverse;
    &.container {
      padding: 0;
    }
@@ -9,7 +11,7 @@
 @media screen and (min-width: 1024px) {
   .layout {
     display: grid;
-    grid-template-columns: 650px 300px;
-    grid-column-gap: 40px;
+    grid-template-columns: 620px 340px;
+    grid-column-gap: 30px;
   }
 }

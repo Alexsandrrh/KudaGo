@@ -8,10 +8,8 @@ export function favorite(
   { type, payload }
 ) {
   switch (type) {
-    case 'SET_DATA_FAVORITE':
-      return payload;
     case ADD_EVENT_TO_FAVORITE:
-      return [ ...state, payload ];
+      return [...state, payload];
     case DELETE_EVENT_FROM_FAVORITE:
       return state.filter(item => item.id !== payload);
     default:

@@ -19,12 +19,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
     flex-direction: row-reverse;
-    bottom: 20px;
-    left: 15px;
+    bottom: 10px;
+    left: 10px;
+    border-radius: 4px;
     cursor: pointer;
     &:hover {
-      opacity: 0.9;
+      background: rgba(0, 0, 0, 0.3);
     }
 
     &.-added {

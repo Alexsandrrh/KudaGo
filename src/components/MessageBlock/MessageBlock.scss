@@ -1,0 +1,17 @@
+.message-block {
+  padding: 40px;
+  background: #ffffff;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  &__body {
+    p {
+      font-family: 'Segoe UI';
+      font-size: 16px;
+      line-height: 22px;
+
+      a {
+        color: #198cff;
+      }
+    }
+  }
+}
