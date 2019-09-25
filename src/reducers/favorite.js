@@ -3,18 +3,17 @@ import {
   DELETE_EVENT_FROM_FAVORITE
 } from '../actions/favorite';
 
-export function favorite(state = {}, { type, payload }) {
+export function favorite(
+  state = JSON.parse(localStorage.getItem('favorite') || '[]'),
+  { type, payload }
+) {
   switch (type) {
     case 'SET_DATA_FAVORITE':
       return payload;
     case ADD_EVENT_TO_FAVORITE:
-      const addedData = { ...state };
-      addedData[payload.id] = payload;
-      return addedData;
+      return [ ...state, payload ];
     case DELETE_EVENT_FROM_FAVORITE:
-      const deletedData = { ...state };
-      delete deletedData[payload];
-      return deletedData;
+      return state.filter(item => item.id !== payload);
     default:
       return state;
   }

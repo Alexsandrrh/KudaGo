@@ -18,8 +18,8 @@ const EventPreviewBtnFavorite = ({
       type="submit"
       className={'event-preview__btn-favorite' + customClass}
       onClick={event => {
-        event.isPropagationStopped();
         handleEventToFavorite(object);
+        return false;
       }}
     >
       <span className="event-preview__text">Добавить в избранное</span>
@@ -38,7 +38,9 @@ EventPreviewBtnFavorite.propTypes = {
 export default connect(
   (state, props) => {
     return {
-      isAdded: state.favorite[props.eventID] ? true : false
+      isAdded: state.favorite.find(item => item.id === props.eventID)
+        ? true
+        : false
     };
   },
   dispatch => {

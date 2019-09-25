@@ -3,17 +3,16 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './pages/MainPage/MainPage';
 import EventPage from './pages/EventPage/EventPage';
+import FavoritePage from './pages/FavoritePage/FavoritePage';
 
 const App = () => {
   return (
     <Fragment>
       <Header />
-      <div
-        className="app-content"
-
-      >
+      <div className="app-content">
         <Switch>
           <Route exact path="/" component={MainPage} />
+          <Route path="/favorite" component={FavoritePage} />
           <Route path="/event/:id" component={EventPage} />
         </Switch>
       </div>

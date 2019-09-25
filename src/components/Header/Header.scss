@@ -10,23 +10,39 @@
     &-container {
       overflow: auto;
       height: 60px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      .header-container__nav {
-        &.active {
-          .header-container__nav-text {
-            color: #2f2f2f;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+      .header-container__menu {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-items: center;
+        .header-container__nav {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 60px;
+          padding: 0 15px;
+          &.active {
+            border-bottom: 3px solid #2f2f2f;
+            .header-container__nav-text {
+              color: #2f2f2f;
+            }
           }
-        }
 
-        margin-right: 25px;
+          &:hover {
+            .header-container__nav-text {
+              color: #666666;
+            }
+          }
 
-        &-text {
-          font-family: 'Segoe UI';
-          font-size: 22px;
-          font-weight: 600;
-          color: #bbbbbb;
+          &-text {
+            font-family: 'Segoe UI';
+            font-size: 22px;
+            font-weight: 600;
+            color: #bbbbbb;
+          }
         }
       }
     }

@@ -17,13 +17,6 @@ if (NODE_ENV === 'development') {
   store = createStore(Store, applyMiddleware(thunk));
 }
 
-// Init favorite
-const dataFavorite = localStorage.getItem('favorite') || '{}';
-store.dispatch({
-  type: 'SET_DATA_FAVORITE',
-  payload: JSON.parse(dataFavorite)
-});
-
 const container = document.getElementById('app');
 ReactDOM.render(
   <Provider store={store}>
