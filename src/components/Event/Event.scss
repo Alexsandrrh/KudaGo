@@ -6,14 +6,17 @@
     margin-bottom: 20px;
 
     &-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
       font-family: 'Segoe UI';
-      padding: 20px 15px 0;
+      padding: 20px 15px 15px;
 
       &__publish-time {
         font-size: 12px;
         line-height: 1.5em;
         color: #afafaf;
-        margin-bottom: 8px;
       }
     }
 
@@ -40,13 +43,17 @@
         color: #232323;
       }
     }
-
-
   }
 }
 
 @media screen and (min-width: 1024px) {
   .event {
     border: 1px solid #e0e0e0;
+
+    &-head,
+    &-content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 }

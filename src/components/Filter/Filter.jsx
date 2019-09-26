@@ -5,23 +5,53 @@ import { connect } from 'react-redux';
 import Checkbox from '../Common/Checkbox/Checkbox';
 import getCategory from '../../utils/getCategory';
 import { getFilterEvents } from '../../actions/events';
-
-const FilterSection = ({ children, title }) => {
-  return (
-    <div className="filter-section">
-      <h4 className="filter-section__title">{title}</h4>
-      <div className="filter-section__body">{children}</div>
-    </div>
-  );
-};
+import Icon from '../Common/Icon/Icon';
+import Arrow from '../../assets/icons/corner-right-down.svg';
+import FilterSection from './FilterSection';
+import Select from '../Common/Select/Select';
+import { FROM_LOW_TO_HIGH, NOT_STATED, FROM_HIGH_TO_LOW } from '../../contants';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      categories: []
+      categories: [],
+      sortType: 'NOT_STATED',
+      filterIsClose: true
     };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log('CLick');
+    this.setState({ filterIsClose: !this.state.filterIsClose });
+  }
+
+  onChangeCategory(e, category) {
+    let data = null;
+    const state = this.state;
+
+    if (e.target.checked) {
+      data = [...state.categories, category];
+      this.setState({
+        categories: data
+      });
+    } else {
+      data = state.categories.filter(item => item !== category);
+      this.setState({
+        categories: data
+      });
+    }
+
+    this.props.getFilterEvents({ ...state, categories: data });
+  }
+
+  onChangeSortType(e) {
+    const value = e.target.value;
+    this.setState({ sortType: value });
+    this.props.getFilterEvents({ ...this.state, sortType: value });
   }
 
   render() {
@@ -29,11 +59,31 @@ class Filter extends Component {
 
     return (
       <div className="filter">
-        <div className="filter-container">
-          <div className="filter-container__head">
+        <div
+          className={
+            this.state.filterIsClose
+              ? 'filter-container -close'
+              : 'filter-container'
+          }
+        >
+          <div className="filter-container__head" onClick={this.handleClick}>
             <h3 className="filter-container__head-title">Фильтр</h3>
+            <Icon className="filter-container__head-icon" icon={Arrow} />
           </div>
           <div className="filter-container__body">
+            <FilterSection title="Сортировка">
+              <Select
+                className="filter-container__body-select"
+                onChange={e => {
+                  this.onChangeSortType(e);
+                }}
+              >
+                <option value={NOT_STATED}>Не важно</option>
+                <option value={FROM_LOW_TO_HIGH}>От дешевых к дорогим</option>
+                <option value={FROM_HIGH_TO_LOW}>От дорогих к дешевым</option>
+              </Select>
+            </FilterSection>
+
             <FilterSection title="Категории">
               {categories.map((category, index) => {
                 return (
@@ -41,23 +91,7 @@ class Filter extends Component {
                     key={index}
                     id={category}
                     onChange={e => {
-                      let data = null;
-
-                      if (e.target.checked) {
-                        data = [...this.state.categories, category];
-                        this.setState({
-                          categories: data
-                        });
-                      } else {
-                        data = this.state.categories.filter(
-                          item => item !== category
-                        );
-                        this.setState({
-                          categories: data
-                        });
-                      }
-
-                      this.props.getFilterEvents(data);
+                      this.onChangeCategory(e, category);
                     }}
                   >
                     {getCategory(category)}
@@ -84,7 +118,7 @@ export default connect(
   },
   dispatch => {
     return {
-      getFilterEvents: categories => dispatch(getFilterEvents(categories))
+      getFilterEvents: state => dispatch(getFilterEvents(state))
     };
   }
 )(Filter);

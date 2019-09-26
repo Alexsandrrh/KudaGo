@@ -12,7 +12,7 @@ const FavoritePage = ({ events }) => {
       {events.length !== 0 ? (
         <EventsList events={events} />
       ) : (
-        <MessageBlock title="У вас нет никаких событий в избранном :-(">
+        <MessageBlock title="У вас нет никаких событий в избранном :-)">
           <p>
             Чтобы добавить событие в избранное перейдите в список с{' '}
             <Link to="/">событиями</Link>

@@ -19,5 +19,21 @@
   {
     "slug": "theater",
     "name": "Спектакли"
+  },
+  {
+    "slug": "concert",
+    "name": "Концерты"
+  },
+  {
+    "slug": "exhibition",
+    "name": "Выставки"
+  },
+  {
+    "slug": "stand-up",
+    "name": "Стендап"
+  },
+  {
+    "slug": "kids",
+    "name": "Детям"
   }
 ]

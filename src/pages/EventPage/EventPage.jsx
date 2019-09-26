@@ -42,7 +42,7 @@ class EventPage extends Component {
     } = this.props.event;
 
     return (
-      <Layout sidebar={<div></div>}>
+      <Layout sidebar={<div />}>
         <div className="event-page">
           <div className="event-page__container">
             <EventPreview image={image}>

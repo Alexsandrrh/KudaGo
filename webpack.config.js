@@ -38,7 +38,7 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[hash:14].[ext]',
               outputPath: './assets/fonts'
             }
           }
@@ -63,7 +63,7 @@ const config = {
       cacheGroups: {
         vendor: {
           name: 'vendors',
-          filename: 'js/[name].[hash:10].js',
+          filename: 'assets/js/[name].[hash:10].js',
           test: /node_modules/,
           chunks: 'all',
           enforce: true

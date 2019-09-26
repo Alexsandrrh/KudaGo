@@ -20,6 +20,7 @@ class Event extends Component {
       image,
       id,
       title,
+      price,
       description,
       ageRestriction,
       category
@@ -36,6 +37,7 @@ class Event extends Component {
               .locale('ru')
               .fromNow()}
           </p>
+          <p className="event-head__price">{price} руб.</p>
         </div>
         <div className="event-content">
           <Link to={link} className="event-content__link">

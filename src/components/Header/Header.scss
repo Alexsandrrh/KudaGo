@@ -25,15 +25,16 @@
           height: 60px;
           padding: 0 15px;
           &.active {
-            border-bottom: 3px solid #2f2f2f;
+            padding-top: 3px;
+            border-bottom: 3px solid #198cff;
             .header-container__nav-text {
-              color: #2f2f2f;
+              color: #198cff;
             }
           }
 
           &:hover {
             .header-container__nav-text {
-              color: #666666;
+              color: #198cff;
             }
           }
 
