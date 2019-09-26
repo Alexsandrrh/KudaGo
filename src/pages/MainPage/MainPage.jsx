@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import EventsList from '../../containers/EventsList/EventsList';
 import Layout from '../../components/Layout/Layout';
-import PropTypes from 'prop-types';
 import { getEvents } from '../../actions/events';
-import { connect } from 'react-redux';
 import Filter from '../../components/Filter/Filter';
 
 class MainPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
-    this.props.getEvents();
+    const { getEvents } = this.props;
+    getEvents();
   }
 
   render() {
+    const { events } = this.props;
+
     return (
       <Layout sidebar={<Filter />}>
-        <EventsList events={this.props.events} />
+        <EventsList events={events} />
       </Layout>
     );
   }
 }
 
 MainPage.propTypes = {
-  events: PropTypes.any.isRequired,
+  events: PropTypes.arrayOf(PropTypes.object).isRequired,
   getEvents: PropTypes.func.isRequired
 };
 

@@ -12,7 +12,7 @@ const MessageBlock = ({ title, children }) => {
 };
 
 MessageBlock.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired
 };
 

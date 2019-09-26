@@ -14,7 +14,7 @@ const FavoritePage = ({ events }) => {
       ) : (
         <MessageBlock title="У вас нет никаких событий в избранном :-)">
           <p>
-            Чтобы добавить событие в избранное перейдите в список с{' '}
+            {`Чтобы добавить событие в избранное перейдите в список с `}
             <Link to="/">событиями</Link>
           </p>
         </MessageBlock>
@@ -24,7 +24,7 @@ const FavoritePage = ({ events }) => {
 };
 
 FavoritePage.propTypes = {
-  events: PropTypes.array
+  events: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default connect(

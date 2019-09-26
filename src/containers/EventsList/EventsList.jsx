@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Event from '../../components/Event/Event';
 
 const EventsList = ({ events }) => {
   const EVENTS = events.map(event => {
-    return <Event data={event} key={`event-${event.id}`} />;
+    return <Event event={event} key={`event-key-${event.id}`} />;
   });
 
   return (
@@ -15,7 +16,7 @@ const EventsList = ({ events }) => {
 };
 
 EventsList.propTypes = {
-  events: PropTypes.array.isRequired
+  events: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default EventsList;

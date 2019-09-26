@@ -5,18 +5,14 @@ import Icon from '../Common/Icon/Icon';
 import Heart from '../../assets/icons/heart.svg';
 import { handleEventToFavorite } from '../../actions/favorite';
 
-const EventPreviewBtnFavorite = ({
-  isAdded,
-  object,
-  handleEventToFavorite
-}) => {
+const EventPreviewBtnFavorite = ({ isAdded, object, handleEventToFavorite }) => {
   const customClass = isAdded ? ' -added' : '';
 
   return (
     <button
       title="Добавить в избранное"
       type="submit"
-      className={'event-preview__btn-favorite' + customClass}
+      className={`event-preview__btn-favorite  ${customClass}`}
       onClick={event => {
         event.preventDefault();
         handleEventToFavorite(object);
@@ -30,18 +26,17 @@ const EventPreviewBtnFavorite = ({
 };
 
 EventPreviewBtnFavorite.propTypes = {
-  eventID: PropTypes.number,
-  isAdded: PropTypes.bool,
-  object: PropTypes.object,
-  handleEventToFavorite: PropTypes.func
+  // eslint-disable-next-line react/no-unused-prop-types
+  eventID: PropTypes.number.isRequired,
+  isAdded: PropTypes.bool.isRequired,
+  object: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleEventToFavorite: PropTypes.func.isRequired
 };
 
 export default connect(
   (state, props) => {
     return {
-      isAdded: state.favorite.find(item => item.id === props.eventID)
-        ? true
-        : false
+      isAdded: !!state.favorite.find(item => item.id === props.eventID)
     };
   },
   dispatch => {

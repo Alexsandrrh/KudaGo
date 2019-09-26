@@ -1,6 +1,7 @@
 import events from '../json/events';
-export const SET_EVENTS_DATA = 'SET_EVENTS_DATA';
 import { FROM_LOW_TO_HIGH, NOT_STATED, FROM_HIGH_TO_LOW } from '../contants';
+
+export const SET_EVENTS_DATA = 'SET_EVENTS_DATA';
 
 export const getEvents = () => dispatch => {
   dispatch({ type: SET_EVENTS_DATA, payload: events });
@@ -8,12 +9,12 @@ export const getEvents = () => dispatch => {
 
 function getEventsForCategories(categories) {
   if (categories.length !== 0) {
-    let result = [];
+    const result = [];
 
-    for (let i = 0; i < categories.length; i++) {
+    for (let i = 0; i < categories.length; i += 1) {
       const category = categories[i];
 
-      for (let j = 0; j < events.length; j++) {
+      for (let j = 0; j < events.length; j += 1) {
         const event = events[j];
 
         if (event.category === category) {
@@ -22,9 +23,8 @@ function getEventsForCategories(categories) {
       }
     }
     return result;
-  } else {
-    return events;
   }
+  return events;
 }
 
 function sortByPriceToHigh(categories) {
@@ -34,11 +34,11 @@ function sortByPriceToHigh(categories) {
 
     if (aPrice > bPrice) {
       return 1;
-    } else if (aPrice < bPrice) {
-      return -1;
-    } else {
-      return 0;
     }
+    if (aPrice < bPrice) {
+      return -1;
+    }
+    return 0;
   });
 }
 

@@ -10,36 +10,23 @@ import EventPreviewAge from '../../components/EventPreview/EventPreviewAge';
 import EventPreviewBtnFavorite from '../../components/EventPreview/EventPreviewBtnFavorite';
 
 class EventPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
-    this.props.getEvents();
+    // eslint-disable-next-line no-shadow
+    const { getEvents } = this.props;
+    getEvents();
     window.scrollTo(0, 0);
   }
 
-  getCorrectBody(string) {
-    const correctString = String(string).replace(
-      /(src=")/gm,
-      `src="https://kudago.com`
-    );
+  getCorrectBody() {
+    const { event } = this.props;
+    const { bodyText } = event;
 
-    return correctString;
+    return String(bodyText).replace(/(src=")/gm, `src="https://kudago.com`);
   }
 
   render() {
-    const {
-      bodyText,
-      title,
-      description,
-      image,
-      id,
-      category,
-      ageRestriction
-    } = this.props.event;
+    const { event } = this.props;
+    const { title, description, image, id, category, ageRestriction } = event;
 
     return (
       <Layout sidebar={<div />}>
@@ -48,7 +35,7 @@ class EventPage extends Component {
             <EventPreview image={image}>
               <EventPreviewAge age={ageRestriction} />
               <EventPreviewCategory category={category} />
-              <EventPreviewBtnFavorite eventID={id} object={this.props.event} />
+              <EventPreviewBtnFavorite eventID={id} object={event} />
             </EventPreview>
             <div className="event-page__head">
               <h2 className="event-page__title">{title}</h2>
@@ -60,7 +47,7 @@ class EventPage extends Component {
             <div
               className="event-page__content"
               dangerouslySetInnerHTML={{
-                __html: this.getCorrectBody(bodyText)
+                __html: this.getCorrectBody()
               }}
             />
           </div>
@@ -71,15 +58,13 @@ class EventPage extends Component {
 }
 
 EventPage.propTypes = {
-  event: PropTypes.object.isRequired,
+  event: PropTypes.objectOf(PropTypes.any).isRequired,
   getEvents: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, props) => {
   return {
-    event:
-      state.events.find(event => event.id === Number(props.match.params.id)) ||
-      {}
+    event: state.events.find(event => event.id === Number(props.match.params.id)) || {}
   };
 };
 

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { NODE_ENV } = process.env;
 
 const config = {
   mode: NODE_ENV,
@@ -17,17 +17,7 @@ const config = {
     publicPath: '/'
   },
   resolve: {
-    extensions: [
-      '.js',
-      '.ts',
-      '.tsx',
-      '.jsx',
-      '.scss',
-      '.scss',
-      '.css',
-      '.json',
-      '.html'
-    ]
+    extensions: ['.js', '.ts', '.tsx', '.jsx', '.scss', '.scss', '.css', '.json', '.html']
   },
   module: {
     rules: [
@@ -74,7 +64,9 @@ const config = {
 };
 
 if (NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
   module.exports = merge(config, require('./webpack/webpack.development'));
 } else if (NODE_ENV === 'production') {
+  // eslint-disable-next-line global-require
   module.exports = merge(config, require('./webpack/webpack.production'));
 }

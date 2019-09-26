@@ -11,6 +11,10 @@ const Layout = ({ children, sidebar }) => {
   );
 };
 
+Layout.defaultProps = {
+  sidebar: undefined
+};
+
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   sidebar: PropTypes.node

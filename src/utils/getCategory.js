@@ -5,7 +5,6 @@ export default function(slug) {
 
   if (data) {
     return data;
-  } else {
-    return '';
   }
+  return null;
 }

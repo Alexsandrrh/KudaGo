@@ -6,18 +6,15 @@ const EventPreviewCategory = ({ category }) => {
   if (category) {
     return (
       <div className="event-preview__category">
-        <span className="event-preview__category-name">
-          {getCategory(category)}
-        </span>
+        <span className="event-preview__category-name">{getCategory(category)}</span>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 EventPreviewCategory.propTypes = {
-  category: PropTypes.string
+  category: PropTypes.string.isRequired
 };
 
 export default EventPreviewCategory;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './pages/MainPage/MainPage';
@@ -7,7 +7,7 @@ import FavoritePage from './pages/FavoritePage/FavoritePage';
 
 const App = () => {
   return (
-    <Fragment>
+    <>
       <Header />
       <div className="app-content">
         <Switch>
@@ -16,7 +16,7 @@ const App = () => {
           <Route path="/event/:id" component={EventPage} />
         </Switch>
       </div>
-    </Fragment>
+    </>
   );
 };
 

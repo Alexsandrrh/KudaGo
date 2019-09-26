@@ -30,18 +30,19 @@ class EventPreview extends Component {
           </figure>
         </div>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 }
 
 EventPreview.defaultProps = {
-  style: {}
+  style: {},
+  children: undefined,
+  image: undefined
 };
 
 EventPreview.propTypes = {
-  style: PropTypes.object,
+  style: PropTypes.objectOf(PropTypes.any),
   children: PropTypes.node,
   image: PropTypes.string
 };

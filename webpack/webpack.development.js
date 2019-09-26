@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const NODE_ENV = process.env.NODE_ENV;
 const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
+
+const { NODE_ENV } = process.env;
 
 module.exports = {
   mode: NODE_ENV,

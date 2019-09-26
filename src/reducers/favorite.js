@@ -1,9 +1,6 @@
-import {
-  ADD_EVENT_TO_FAVORITE,
-  DELETE_EVENT_FROM_FAVORITE
-} from '../actions/favorite';
+import { ADD_EVENT_TO_FAVORITE, DELETE_EVENT_FROM_FAVORITE } from '../actions/favorite';
 
-export function favorite(
+export default function(
   state = JSON.parse(localStorage.getItem('favorite') || '[]'),
   { type, payload }
 ) {

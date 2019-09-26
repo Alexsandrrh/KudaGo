@@ -25,13 +25,14 @@ class Filter extends Component {
   }
 
   handleClick() {
-    console.log('CLick');
-    this.setState({ filterIsClose: !this.state.filterIsClose });
+    const { filterIsClose } = this.state;
+    this.setState({ filterIsClose: !filterIsClose });
   }
 
   onChangeCategory(e, category) {
     let data = null;
-    const state = this.state;
+    const { state } = this;
+    const { getFilterEvents } = this.props;
 
     if (e.target.checked) {
       data = [...state.categories, category];
@@ -45,31 +46,27 @@ class Filter extends Component {
       });
     }
 
-    this.props.getFilterEvents({ ...state, categories: data });
+    getFilterEvents({ ...state, categories: data });
   }
 
   onChangeSortType(e) {
-    const value = e.target.value;
+    const { value } = e.target;
+    const { getFilterEvents } = this.props;
     this.setState({ sortType: value });
-    this.props.getFilterEvents({ ...this.state, sortType: value });
+    getFilterEvents({ ...this.state, sortType: value });
   }
 
   render() {
     const { categories } = this.props;
+    const { filterIsClose } = this.state;
 
     return (
       <div className="filter">
-        <div
-          className={
-            this.state.filterIsClose
-              ? 'filter-container -close'
-              : 'filter-container'
-          }
-        >
-          <div className="filter-container__head" onClick={this.handleClick}>
+        <div className={filterIsClose ? 'filter-container -close' : 'filter-container'}>
+          <button type="submit" className="filter-container__head" onClick={this.handleClick}>
             <h3 className="filter-container__head-title">Фильтр</h3>
             <Icon className="filter-container__head-icon" icon={Arrow} />
-          </div>
+          </button>
           <div className="filter-container__body">
             <FilterSection title="Сортировка">
               <Select
@@ -85,10 +82,10 @@ class Filter extends Component {
             </FilterSection>
 
             <FilterSection title="Категории">
-              {categories.map((category, index) => {
+              {categories.map(category => {
                 return (
                   <Checkbox
-                    key={index}
+                    key={`checkbox-key-${category}`}
                     id={category}
                     onChange={e => {
                       this.onChangeCategory(e, category);
@@ -107,7 +104,8 @@ class Filter extends Component {
 }
 
 Filter.propTypes = {
-  categories: PropTypes.node
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  getFilterEvents: PropTypes.func.isRequired
 };
 
 export default connect(
